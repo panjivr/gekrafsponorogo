@@ -8,10 +8,10 @@ export const org = {
   longName: "Gerakan Ekonomi Kreatif Nasional — DPC Ponorogo",
   tagline: "Ekraf Bangkit, Indonesia Maju",
   hashtag: "#EkrafBangkitIndonesiaMaju",
-  domain: "gekrafsponorogo.id",
+  domain: "gekrafsponorogo.my.id",
   description:
     "Wadah resmi pegiat ekonomi kreatif Ponorogo — menghimpun pelaku kreatif, UMKM, komunitas, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital.",
-  email: "halo@gekrafsponorogo.id",
+  email: "halo@gekrafsponorogo.my.id",
   whatsapp: "+62 812-0000-0000",
   address: "Ponorogo, Jawa Timur, Indonesia",
   socials: {

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getNews } from "@/lib/queries";
 
-const base = "https://gekrafsponorogo.id";
+const base = "https://gekrafsponorogo.my.id";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [

@@ -29,7 +29,7 @@ Economy Hub* Kabupaten Ponorogo.
 | Utilitas | **clsx** + **tailwind-merge** |
 | Database | **Supabase** (Postgres) — runtime reads |
 | ORM/Schema | **Prisma** (sumber kebenaran skema + migrasi) |
-| Deploy | **Vercel** · DNS **Cloudflare** · Domain `gekrafsponorogo.id` |
+| Deploy | **Vercel** · DNS **Cloudflare** · Domain `gekrafsponorogo.my.id` |
 
 ### Warna brand (dari logo)
 
@@ -64,7 +64,7 @@ Situs langsung tampil penuh **tanpa** konfigurasi database (memakai seed data).
 1. Push repo ke GitHub.
 2. Import di Vercel → framework terdeteksi **Next.js**.
 3. Tambahkan env vars (lihat `.env.example`) di **Project Settings → Environment Variables**.
-4. Deploy. Arahkan domain `gekrafsponorogo.id` (DNS via Cloudflare → Vercel).
+4. Deploy. Arahkan domain `gekrafsponorogo.my.id` (DNS via Cloudflare → Vercel).
 
 ## 🧠 Skills yang dipakai
 
@@ -89,4 +89,4 @@ supabase/schema.sql     # skema + RLS untuk Supabase
 
 ---
 
-© GEKRAFS Ponorogo · `gekrafsponorogo.id`
+© GEKRAFS Ponorogo · `gekrafsponorogo.my.id`
