@@ -1,0 +1,113 @@
+// GEKRAFS Ponorogo — data model (Prisma is the schema source of truth).
+// Runtime reads use the Supabase JS client; use `prisma db push` / migrations
+// against the Supabase Postgres DATABASE_URL to provision these tables.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  KETUA
+  SEKRETARIS
+  MEDIA
+  EVENT
+  KEANGGOTAAN
+}
+
+enum MemberStatus {
+  pending
+  approved
+  rejected
+}
+
+enum EventStatus {
+  upcoming
+  past
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      Role     @default(MEDIA)
+  createdAt DateTime @default(now())
+}
+
+model Member {
+  id        String       @id @default(cuid())
+  name      String
+  email     String?      @unique
+  phone     String?
+  subsector String
+  role      String       @default("Anggota")
+  district  String
+  initials  String       @default("")
+  status    MemberStatus @default(pending)
+  message   String?
+  createdAt DateTime     @default(now()) @map("created_at")
+
+  @@map("members")
+}
+
+model News {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  content     String
+  category    String   @default("Berita")
+  coverColor  String   @default("#00aeef") @map("cover_color")
+  author      String   @default("Tim Media GEKRAFS")
+  publishedAt DateTime @default(now()) @map("published_at")
+
+  @@map("news")
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  title       String
+  description String
+  location    String
+  subsector   String      @default("Organisasi")
+  status      EventStatus @default(upcoming)
+  accent      String      @default("#00aeef")
+  startsAt    DateTime    @map("starts_at")
+
+  @@map("events")
+}
+
+model Program {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  order       Int    @default(0)
+
+  @@map("programs")
+}
+
+model Partner {
+  id      String  @id @default(cuid())
+  name    String
+  logoUrl String? @map("logo_url")
+  website String?
+
+  @@map("partners")
+}
+
+model Subsector {
+  id   String @id @default(cuid())
+  no   Int    @unique
+  name String
+  icon String
+  desc String
+
+  @@map("subsectors")
+}
