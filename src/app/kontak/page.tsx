@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, MapPin, Instagram, Youtube, MessageCircle, ChevronRight } from "lucide-react";
+import { Mail, MapPin, Instagram, MessageCircle, ChevronRight } from "lucide-react";
 import { org } from "@/lib/content";
 import PageHero from "@/components/site/PageHero";
 import Reveal from "@/components/ui/Reveal";
+import { TikTokIcon } from "@/components/site/icons";
 
 export const metadata: Metadata = {
   title: "Kontak",
@@ -82,13 +83,13 @@ export default function KontakPage() {
                     <Instagram className="h-5 w-5" />
                   </a>
                   <a
-                    href={org.socials.youtube}
+                    href={org.socials.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="YouTube"
+                    aria-label="TikTok"
                     className="grid h-11 w-11 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                   >
-                    <Youtube className="h-5 w-5" />
+                    <TikTokIcon className="h-5 w-5" />
                   </a>
                 </div>
               </div>

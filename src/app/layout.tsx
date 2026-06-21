@@ -55,7 +55,7 @@ const jsonLd = {
   slogan: org.tagline,
   description: org.description,
   areaServed: "Ponorogo, Jawa Timur, Indonesia",
-  sameAs: [org.socials.instagram, org.socials.youtube, org.socials.tiktok],
+  sameAs: [org.socials.instagram, org.socials.tiktok, org.official],
 };
 
 export default function RootLayout({

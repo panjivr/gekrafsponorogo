@@ -61,7 +61,7 @@ export default async function AnggotaPage() {
             </div>
             <Link
               href="/daftar"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0a152d] px-6 py-3 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.97]"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-br from-[#00aeef] to-[#0087d1] px-6 py-3 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.97]"
             >
               Daftar sekarang
               <ChevronRight className="h-4 w-4" strokeWidth={2.25} />

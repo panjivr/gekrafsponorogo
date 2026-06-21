@@ -75,7 +75,7 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <Link
                 href="/daftar"
-                className="hidden sm:inline-flex items-center gap-1 bg-[#0a152d] text-white rounded-full px-5 py-2.5 text-[13px] font-semibold shadow-sm hover:scale-[1.03] active:scale-[0.97] transition-transform"
+                className="hidden sm:inline-flex items-center gap-1 bg-gradient-to-br from-[#00aeef] to-[#0087d1] text-white rounded-full px-5 py-2.5 text-[13px] font-semibold shadow-sm hover:scale-[1.03] active:scale-[0.97] transition-transform"
               >
                 Gabung GEKRAFS
                 <ChevronRight className="h-4 w-4" strokeWidth={2.25} />
@@ -128,7 +128,7 @@ export default function Header() {
               </div>
               <Link
                 href="/daftar"
-                className="mt-3 flex items-center justify-center gap-1 bg-[#0a152d] text-white rounded-full px-5 py-3 text-sm font-semibold"
+                className="mt-3 flex items-center justify-center gap-1 bg-gradient-to-br from-[#00aeef] to-[#0087d1] text-white rounded-full px-5 py-3 text-sm font-semibold"
               >
                 Gabung GEKRAFS
                 <ChevronRight className="h-4 w-4" strokeWidth={2.25} />

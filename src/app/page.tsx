@@ -1,5 +1,4 @@
 import Hero from "@/components/hero/Hero";
-import Marquee from "@/components/marquee/Marquee";
 import Stats from "@/components/sections/Stats";
 import About from "@/components/sections/About";
 import VisionMission from "@/components/sections/VisionMission";
@@ -9,6 +8,7 @@ import Structure from "@/components/sections/Structure";
 import Potensi from "@/components/sections/Potensi";
 import Roadmap from "@/components/sections/Roadmap";
 import NewsEventsPreview from "@/components/sections/NewsEventsPreview";
+import NationalNews from "@/components/sections/NationalNews";
 import Onboarding from "@/components/sections/Onboarding";
 import CTA from "@/components/sections/CTA";
 
@@ -17,7 +17,6 @@ export default function Home() {
     <>
       <div className="pt-6">
         <Hero />
-        <Marquee />
       </div>
       <Stats />
       <About />
@@ -28,6 +27,7 @@ export default function Home() {
       <Potensi />
       <Roadmap />
       <NewsEventsPreview />
+      <NationalNews />
       <Onboarding />
       <CTA />
       <div className="pb-4" />

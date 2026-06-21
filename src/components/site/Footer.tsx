@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Instagram, Youtube, Mail, MapPin, ChevronRight } from "lucide-react";
+import { Instagram, Mail, MapPin, ChevronRight } from "lucide-react";
 import { org, nav } from "@/lib/content";
 import { Logo } from "./Logo";
+import { TikTokIcon } from "./icons";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -64,17 +65,17 @@ export default function Footer() {
                 <Instagram className="h-4.5 w-4.5" />
               </a>
               <a
-                href={org.socials.youtube}
+                href={org.socials.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="YouTube GEKRAFS Ponorogo"
+                aria-label="TikTok GEKRAFS Ponorogo"
                 className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 hover:text-[#0a1b33] hover:border-slate-300 transition-colors"
               >
-                <Youtube className="h-4.5 w-4.5" />
+                <TikTokIcon className="h-4 w-4" />
               </a>
               <Link
                 href="/daftar"
-                className="ml-1 inline-flex items-center gap-1 rounded-full bg-[#0a152d] px-5 py-2.5 text-[13px] font-semibold text-white"
+                className="ml-1 inline-flex items-center gap-1 rounded-full bg-gradient-to-br from-[#00aeef] to-[#0087d1] px-5 py-2.5 text-[13px] font-semibold text-white"
               >
                 Daftar
                 <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.25} />
@@ -87,8 +88,13 @@ export default function Footer() {
           <p>
             © {year} {org.longName}.
           </p>
-          <p>
-            {org.domain} · {org.tagline}
+          <p className="flex items-center gap-3">
+            <span>
+              {org.domain} · {org.tagline}
+            </span>
+            <Link href="/admin" className="text-slate-400 hover:text-[#0a1b33]">
+              Panel Admin
+            </Link>
           </p>
         </div>
       </div>

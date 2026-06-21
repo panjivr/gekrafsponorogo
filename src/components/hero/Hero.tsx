@@ -48,7 +48,7 @@ export default function Hero() {
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href={hero.primaryCta.href}
-                className="inline-flex items-center gap-2 bg-[#0a152d] text-white rounded-full px-6 py-3 text-[13px] font-semibold shadow-[0_10px_30px_rgba(10,21,45,0.25)]"
+                className="inline-flex items-center gap-2 bg-gradient-to-br from-[#00aeef] to-[#0087d1] text-white rounded-full px-6 py-3 text-[13px] font-semibold shadow-[0_10px_30px_rgba(0,135,209,0.35)]"
               >
                 {hero.primaryCta.label}
                 <ChevronRight className="h-4 w-4" strokeWidth={2.25} />

@@ -1,34 +1,38 @@
 import { cn } from "@/lib/utils";
 
 /**
- * GEKRAFS Ponorogo brand mark — an organic "paint splat" blob in brand blue
- * with yellow accent dots, echoing the official logo. Pure SVG (crisp, themeable).
+ * GEKRAFS brand mark — faithful SVG recreation of the official "paint splat"
+ * logo: a blue organic splat with the stacked GE / KRA / FS lettering in white
+ * and yellow splatter dots. Crisp at any size, no external asset needed.
  */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 64 64"
+      viewBox="0 0 100 100"
       className={className}
       role="img"
-      aria-label="GEKRAFS Ponorogo"
+      aria-label="GEKRAFS"
     >
+      {/* yellow splatter accents */}
+      <circle cx="11" cy="24" r="5" fill="#f7c600" />
+      <circle cx="89" cy="69" r="4.4" fill="#f7c600" />
+      <circle cx="22" cy="86" r="3" fill="#f7c600" />
+      {/* blue splat blob */}
       <path
         fill="#00aeef"
-        d="M30.5 3.2c4.2-1.7 8.1 2.1 12.3 1.6 3.9-.4 8.4-3 11.6-.4 3.3 2.7 1.3 7.7 2.6 11.6 1.3 3.9 5.6 6.9 5.4 11.1-.2 4.2-4.8 6.6-6.5 10.5-1.6 3.8-.6 8.9-3.7 11.7-3 2.8-7.8 1-11.6 2.5-3.9 1.5-7 6-11.2 5.7-4.2-.3-6.4-5.1-10.2-7-3.8-1.8-9-1.4-11.6-4.7-2.6-3.3-.6-8.2-1.8-12.1C4.3 31.5.2 28.2.6 24c.4-4.2 5.2-6.2 7.2-9.9C9.7 10.4 9 5.4 12.2 2.9c3.2-2.5 7.9-.2 11.8-1.1 2.3-.5 4.4-1.7 6.5-2.6Z"
+        d="M50 5c11 0 15.5 9.8 26.4 10.8 10.8 1 18.4 9.7 16.2 20.4-2.1 10.7 6.2 17.3 3.2 28-3 10.7-13.9 12.4-19.8 21.4-5.9 9-17.6 5.4-26.6 6.3-9 .9-17.7 4.2-24.8-3.6-7.1-7.8-18.5-6.9-19.4-17.8-.9-10.9-7.9-18.3-2.8-28.4C7.5 32.2 4.6 21.3 14.4 15.2 24.2 9.1 34 5 50 5Z"
       />
-      <circle cx="15" cy="14" r="3.4" fill="#f7c600" />
-      <circle cx="50" cy="46" r="3" fill="#f7c600" />
-      <text
-        x="32"
-        y="40"
-        textAnchor="middle"
-        fontFamily="Outfit, sans-serif"
-        fontWeight="700"
-        fontSize="26"
+      {/* stacked GEKRAFS lettering */}
+      <g
         fill="#ffffff"
+        fontFamily="Outfit, ui-sans-serif, sans-serif"
+        fontWeight="800"
+        textAnchor="middle"
       >
-        G
-      </text>
+        <text x="50" y="40" fontSize="23">GE</text>
+        <text x="50" y="61" fontSize="20">KRA</text>
+        <text x="50" y="82" fontSize="23">FS</text>
+      </g>
     </svg>
   );
 }
@@ -42,11 +46,11 @@ export function Logo({
 }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <LogoMark className="h-9 w-9 shrink-0" />
+      <LogoMark className="h-11 w-11 shrink-0" />
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            "font-display text-[17px] font-semibold tracking-tight",
+            "font-display text-[18px] font-bold tracking-tight",
             inverted ? "text-white" : "text-[#0a1b33]"
           )}
         >
@@ -54,7 +58,7 @@ export function Logo({
         </span>
         <span
           className={cn(
-            "text-[10px] font-semibold uppercase tracking-[0.22em]",
+            "text-[10px] font-semibold uppercase tracking-[0.24em]",
             inverted ? "text-white/70" : "text-[#0087d1]"
           )}
         >

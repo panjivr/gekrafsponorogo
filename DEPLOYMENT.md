@@ -67,6 +67,13 @@ menampilkan sukses (data tidak tersimpan). Untuk data nyata:
    (pooled, port 6543) dan `DIRECT_URL` (direct, port 5432).
 5. Masukkan semua nilai itu ke **Vercel → Settings → Environment Variables**
    (Production + Preview), lalu **Redeploy**.
+6. Set juga `ADMIN_PASSWORD` (password bebas, kuat) untuk login panel **/admin**.
+
+> **Pendaftar masuk ke mana?** Setiap submit di `/daftar` tersimpan ke tabel
+> Supabase `members` (status `pending`). Lihat & kelola (Setujui/Tolak) di
+> **gekrafsponorogo.my.id/admin** (login dengan `ADMIN_PASSWORD`), atau langsung
+> di Supabase → Table Editor → `members`. Anggota yang disetujui otomatis
+> tampil di halaman **/anggota**.
 
 ---
 

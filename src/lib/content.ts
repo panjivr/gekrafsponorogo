@@ -14,10 +14,10 @@ export const org = {
   email: "halo@gekrafsponorogo.my.id",
   whatsapp: "+62 812-0000-0000",
   address: "Ponorogo, Jawa Timur, Indonesia",
+  official: "https://gekrafs.com",
   socials: {
-    instagram: "https://instagram.com/gekrafsponorogo",
-    tiktok: "https://tiktok.com/@gekrafsponorogo",
-    youtube: "https://youtube.com/@gekrafsponorogo",
+    instagram: "https://www.instagram.com/gekrafs.ponorogo",
+    tiktok: "https://www.tiktok.com/@gekrafs.ponorogo",
   },
 } as const;
 
@@ -49,16 +49,30 @@ export const stats = [
   { value: 17, suffix: "", label: "Subsektor ekonomi kreatif", display: "17" },
 ] as const;
 
-/** Marquee logos — kept per the design spec (Hybrid choice): svgl.app brand SVGs. */
-export const marqueeLogos = [
-  { src: "https://svgl.app/library/procure.svg", alt: "Procure", from: "#1d4ed8", to: "#3b82f6" },
-  { src: "https://svgl.app/library/shopify.svg", alt: "Shopify", from: "#eab308", to: "#facc15" },
-  { src: "https://svgl.app/library/blender.svg", alt: "Blender", from: "#2563eb", to: "#60a5fa" },
-  { src: "https://svgl.app/library/figma.svg", alt: "Figma", from: "#7c3aed", to: "#a855f7" },
-  { src: "https://svgl.app/library/spotify.svg", alt: "Spotify", from: "#db2777", to: "#ef4444" },
-  { src: "https://svgl.app/library/lottielab.svg", alt: "Lottielab", from: "#ca8a04", to: "#22c55e" },
-  { src: "https://svgl.app/library/google-cloud.svg", alt: "Google Cloud", from: "#38bdf8", to: "#93c5fd" },
-  { src: "https://svgl.app/library/bing.svg", alt: "Bing", from: "#06b6d4", to: "#14b8a6" },
+/**
+ * National-level news from GEKRAFS Pusat (gekrafs.com) — shown as SUPPLEMENTARY
+ * content to demonstrate that local activities connect to the national movement.
+ * These link out to official/national sources.
+ */
+export const nationalNews = [
+  {
+    title: "Creative Economy Diplomatic Mission 2026: GEKRAFS bawa ekraf Indonesia ke panggung dunia",
+    source: "GEKRAFS Pusat",
+    date: "Juni 2026",
+    href: "https://wartakota.tribunnews.com/nasional/892864/creative-economy-diplomatic-mission-2026-langkah-gekrafs-jadikan-indonesia-pusat-ekraf-dunia",
+  },
+  {
+    title: "GEKRAFS — Gerakan Ekonomi Kreatif Nasional menuju Indonesia Emas 2045",
+    source: "gekrafs.com",
+    date: "Profil Resmi",
+    href: "https://gekrafs.com/profil/",
+  },
+  {
+    title: "Dewan Pimpinan Pusat GEKRAFS (@gekrafs)",
+    source: "Instagram Pusat",
+    date: "Kanal Resmi",
+    href: "https://www.instagram.com/gekrafs/",
+  },
 ] as const;
 
 export type Subsector = {

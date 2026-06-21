@@ -49,13 +49,16 @@ Opsi A (CLI, paling otomatis):
    vercel env add SUPABASE_SERVICE_ROLE_KEY production
    vercel env add DATABASE_URL production
    vercel env add DIRECT_URL production
+   vercel env add ADMIN_PASSWORD production   # password untuk panel /admin (lihat pendaftar)
    vercel --prod      # deploy production
 Opsi B (Dashboard):
    - vercel.com → Add New → Project → import panjivr/gekrafsponorogo
    - Production Branch: main (Settings → Git)
-   - Settings → Environment Variables: tambahkan 5 variabel di atas (Production+Preview)
+   - Settings → Environment Variables: tambahkan 6 variabel di atas (Production+Preview)
    - Deploy / Redeploy
 Verifikasi: buka URL *.vercel.app, pastikan halaman "/", "/berita", "/daftar" 200.
+Catatan: pendaftar dari /daftar tersimpan di tabel Supabase `members` dan bisa
+dilihat/dikelola di /admin (login pakai ADMIN_PASSWORD).
 
 LANGKAH 3 — DOMAIN gekrafsponorogo.my.id
 1. Vercel → Project → Settings → Domains → Add: gekrafsponorogo.my.id
@@ -71,8 +74,8 @@ LANGKAH 3 — DOMAIN gekrafsponorogo.my.id
 
 LANGKAH 4 — VERIFIKASI AKHIR
 - curl -I https://gekrafsponorogo.my.id  -> HTTP/2 200, ada header SSL
-- Buka di browser: hero + video + marquee tampil, menu jalan, /daftar bisa submit
-  (data masuk ke tabel members Supabase dengan status 'pending').
+- Buka di browser: hero + video tampil, menu jalan, /daftar bisa submit
+  (data masuk ke tabel members Supabase dengan status 'pending'); cek /admin.
 - Laporkan: URL vercel, status domain, status HTTPS, dan screenshot homepage.
 
 ATURAN
@@ -92,6 +95,7 @@ ATURAN
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Settings → API → service_role | **rahasia** |
 | `DATABASE_URL` | Supabase → Database → Connection (pooled 6543) | **rahasia** |
 | `DIRECT_URL` | Supabase → Database → Connection (direct 5432) | **rahasia** |
+| `ADMIN_PASSWORD` | tentukan sendiri (login panel /admin) | **rahasia** |
 
 ### Record DNS DomaiNesia (ringkas)
 
