@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "*.supabase.co" },
     ],
   },
+  // Serve the immersive 3D landing (public/3d/index.html) at the site root.
+  // beforeFiles runs before filesystem routing so it owns "/".
+  async rewrites() {
+    return {
+      beforeFiles: [{ source: "/", destination: "/3d/index.html" }],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
 };
 
 export default nextConfig;
