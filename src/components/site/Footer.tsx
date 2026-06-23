@@ -92,6 +92,9 @@ export default function Footer() {
             <span>
               {org.domain} · {org.tagline}
             </span>
+            <a href="/3d/index.html" className="text-slate-400 hover:text-[#0a1b33]">
+              Versi 3D
+            </a>
             <Link href="/admin" className="text-slate-400 hover:text-[#0a1b33]">
               Panel Admin
             </Link>
