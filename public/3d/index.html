@@ -3,199 +3,162 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GEKRAFS Ponorogo — Ekonomi Kreatif Reog</title>
+<title>GEKRAFS Ponorogo — Ekosistem Digital Ekonomi Kreatif</title>
 <meta name="description" content="Membangun masa depan ekonomi kreatif Ponorogo. Kolaborasi pelaku kreatif, UMKM, komunitas, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --gold:#C9A84C; --gold-light:#E8C97A; --gold-dark:#8A6D2F;
-    --black:#0A0806; --deep:#0F0C08; --surface:#1A1510;
-    --red-reog:#8B1A1A; --red-bright:#C0392B;
-    --text-primary:#F5EDD8; --text-secondary:#A89060; --text-muted:#5C4A2A;
-    --fs-display:clamp(48px,8vw,96px); --fs-h1:clamp(34px,5vw,64px);
-    --fs-h2:clamp(24px,3vw,36px); --fs-h3:20px; --fs-body:16px;
-    --fs-small:14px; --fs-label:12px;
+    --blue:#1B4DC4; --blue-bright:#2E6BFF; --blue-light:#5B8DEF; --blue-deep:#0A2A7A; --cyan:#2FD8FF;
+    --bg-black:#050814; --bg-deep:#08102A; --bg-surface:#0D1A3A;
+    --text-primary:#EAF1FF; --text-secondary:#8FA8D8; --text-muted:#4A5E8A; --white:#fff;
+    --fs-display:clamp(44px,8vw,92px); --fs-h1:clamp(32px,5vw,60px);
+    --fs-h2:clamp(24px,3vw,34px); --fs-body:16px; --fs-label:12px;
     --max:1200px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{
-    background:var(--black); color:var(--text-primary);
-    font-family:'Inter',sans-serif; line-height:1.6; overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{background:rgba(201,168,76,.3);color:#fff}
+  body{background:var(--bg-black);color:var(--text-primary);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(46,107,255,.35);color:#fff}
   a{color:inherit;text-decoration:none}
-  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.05}
-  .serif{font-family:'Cormorant Garamond',serif}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.06;letter-spacing:-.01em}
 
-  /* WebGL canvas */
   #webgl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
-  /* Layout */
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:2}
-  section{position:relative;z-index:2;padding:110px 0}
-  .label{
-    display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-label);
-    text-transform:uppercase;letter-spacing:.22em;font-weight:600;color:var(--gold);
-  }
-  .label::before{content:"";width:22px;height:1px;background:var(--gold)}
+  section{position:relative;z-index:2;padding:120px 0}
+  /* readable glass over the live 3D */
+  .stage{background:linear-gradient(180deg,rgba(5,8,20,.30),rgba(5,8,20,.62));backdrop-filter:blur(3px);border-top:1px solid rgba(91,141,239,.08);border-bottom:1px solid rgba(91,141,239,.08)}
+  .label{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-label);text-transform:uppercase;letter-spacing:.22em;font-weight:600;color:var(--cyan)}
+  .label::before{content:"";width:22px;height:1px;background:var(--cyan)}
   .h-section{font-size:var(--fs-h1);margin:14px 0 0;color:var(--text-primary)}
   .lead{color:var(--text-secondary);max-width:640px;margin-top:18px;font-size:var(--fs-body)}
 
-  /* Header */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:50;transition:all .35s ease;
-    border-bottom:1px solid transparent;
-  }
-  header.scrolled{background:rgba(10,8,6,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.16)}
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:all .35s ease;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(5,8,20,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(46,107,255,.2)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
   .brand{display:flex;flex-direction:column;line-height:1}
-  .brand b{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.02em}
-  .brand span{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--text-secondary);margin-top:3px}
-  .menu{display:flex;align-items:center;gap:26px}
+  .brand b{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--text-primary);letter-spacing:.02em}
+  .brand span{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);margin-top:3px}
+  .menu{display:flex;align-items:center;gap:24px}
   .menu a{font-size:13px;color:var(--text-secondary);transition:color .2s;font-weight:500}
   .menu a:hover{color:var(--text-primary)}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;
-    padding:12px 24px;border-radius:999px;cursor:pointer;transition:all .25s ease;border:1px solid transparent;
-  }
-  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1205;box-shadow:0 8px 30px rgba(201,168,76,.25)}
-  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(201,168,76,.4)}
-  .btn-ghost{border:1px solid rgba(201,168,76,.4);color:var(--text-primary)}
-  .btn-ghost:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:12px 24px;border-radius:999px;cursor:pointer;transition:all .25s ease;border:1px solid transparent}
+  .btn-blue{background:linear-gradient(135deg,var(--blue-bright),var(--blue));color:#fff;box-shadow:0 8px 30px rgba(46,107,255,.35)}
+  .btn-blue:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(46,107,255,.55)}
+  .btn-ghost{border:1px solid rgba(91,141,239,.45);color:var(--text-primary)}
+  .btn-ghost:hover{border-color:var(--cyan);background:rgba(46,107,255,.1)}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
-  .burger span{width:24px;height:2px;background:var(--gold);transition:.3s}
+  .burger span{width:24px;height:2px;background:var(--cyan);transition:.3s}
 
-  /* Hero */
   #hero{min-height:100vh;display:flex;align-items:center;padding-top:120px}
-  .hero-in{max-width:780px}
-  .hero h1{font-size:var(--fs-display);margin-top:22px;letter-spacing:-.01em}
+  .hero h1{font-size:var(--fs-display);margin-top:22px}
   .hero .lead{font-size:18px;max-width:600px}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
   .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);z-index:3}
-  .scroll-hint::after{content:"";display:block;width:1px;height:34px;background:linear-gradient(var(--gold),transparent);margin:10px auto 0}
+  .scroll-hint::after{content:"";display:block;width:1px;height:34px;background:linear-gradient(var(--cyan),transparent);margin:10px auto 0}
 
-  /* Stats */
   .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px}
-  .stat .num{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:700;color:var(--gold);line-height:1}
-  .stat p{color:var(--text-secondary);font-size:14px;margin-top:8px;border-top:1px solid rgba(201,168,76,.18);padding-top:10px}
+  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:clamp(40px,6vw,68px);font-weight:700;color:#fff;line-height:1;text-shadow:0 0 30px rgba(46,107,255,.6)}
+  .stat p{color:var(--text-secondary);font-size:14px;margin-top:8px;border-top:1px solid rgba(91,141,239,.2);padding-top:10px}
 
-  /* Cards / pillars */
   .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
-  .pillar{background:var(--surface);border:1px solid rgba(201,168,76,.16);border-radius:18px;padding:30px;transition:.3s}
-  .pillar:hover{border-color:rgba(201,168,76,.5);transform:translateY(-4px)}
-  .pillar .mk{color:var(--gold);font-size:22px}
-  .pillar h3{font-size:21px;margin-top:14px;color:var(--text-primary)}
+  .card-b{background:rgba(13,26,58,.6);border:1px solid rgba(91,141,239,.2);border-radius:18px;padding:28px;transition:.3s;backdrop-filter:blur(4px)}
+  .card-b:hover{border-color:var(--blue-bright);transform:translateY(-4px);box-shadow:0 18px 50px rgba(10,42,122,.5)}
+  .pillar .mk{color:var(--cyan);font-size:22px}
+  .pillar h3{font-size:20px;margin-top:14px;color:var(--text-primary)}
   .pillar p{color:var(--text-secondary);font-size:14px;margin-top:8px}
 
-  .legal{margin-top:24px;background:var(--deep);border:1px solid rgba(201,168,76,.16);border-radius:20px;padding:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .legal{margin-top:24px;background:rgba(8,16,42,.7);border:1px solid rgba(91,141,239,.2);border-radius:20px;padding:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;backdrop-filter:blur(4px)}
   .legal div span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--text-muted)}
-  .legal div b{display:block;color:var(--text-primary);font-weight:500;margin-top:5px;font-family:'Inter',sans-serif;font-size:15px}
+  .legal div b{display:block;color:var(--text-primary);font-weight:500;margin-top:5px;font-family:'Inter';font-size:15px}
 
-  /* Vision */
   .vm{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:46px}
-  .vm .card{background:var(--surface);border:1px solid rgba(201,168,76,.16);border-radius:18px;padding:30px}
-  .vm .card span{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--gold)}
-  .vm .card p{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--text-primary);margin-top:10px;line-height:1.3}
+  .vm .card-b span{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--cyan)}
+  .vm .card-b p{font-family:'Space Grotesk';font-size:21px;color:var(--text-primary);margin-top:10px;line-height:1.3}
   .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
-  .principle{border:1px solid rgba(139,26,26,.4);background:linear-gradient(160deg,rgba(139,26,26,.12),transparent);border-radius:18px;padding:26px}
-  .principle h3{color:var(--gold-light);font-size:20px}
+  .principle{border:1px solid rgba(46,107,255,.3);background:linear-gradient(160deg,rgba(46,107,255,.12),transparent);border-radius:18px;padding:26px}
+  .principle h3{color:var(--cyan);font-size:20px}
   .principle p{color:var(--text-secondary);font-size:14px;margin-top:8px}
 
-  /* Subsectors orbital */
-  .orbit-wrap{position:relative;margin-top:50px}
-  .ring{position:absolute;inset:-40px;border:1px dashed rgba(201,168,76,.14);border-radius:50%;pointer-events:none;animation:spin 60s linear infinite}
-  .ring.r2{inset:60px;animation-duration:90s;animation-direction:reverse;border-color:rgba(139,26,26,.18)}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .subs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
-  .sub{background:var(--surface);border:1px solid rgba(201,168,76,.16);border-radius:14px;padding:18px;transition:.3s;transform-style:preserve-3d}
-  .sub:hover{border-color:var(--gold);transform:translateY(-5px) rotateX(6deg);box-shadow:0 16px 40px rgba(0,0,0,.5)}
-  .sub .no{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold-dark);font-weight:700}
+  .subs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:50px}
+  .sub{background:rgba(13,26,58,.66);border:1px solid rgba(91,141,239,.2);border-radius:14px;padding:18px;transition:.3s;backdrop-filter:blur(4px)}
+  .sub:hover{border-color:var(--cyan);transform:translateY(-5px);box-shadow:0 16px 40px rgba(10,42,122,.6)}
+  .sub .no{font-family:'Space Grotesk';font-size:24px;color:var(--blue-light);font-weight:700}
   .sub h3{font-size:15px;color:var(--text-primary);margin-top:4px}
   .sub p{font-size:12px;color:var(--text-secondary);margin-top:6px;line-height:1.45}
 
-  /* Grebeg / reasons */
   .reasons{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-  .reason{background:var(--surface);border:1px solid rgba(201,168,76,.14);border-radius:16px;padding:24px}
-  .reason b{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:18px}
+  .reason{background:rgba(13,26,58,.6);border:1px solid rgba(91,141,239,.18);border-radius:16px;padding:24px;backdrop-filter:blur(4px)}
+  .reason b{color:var(--cyan);font-family:'Space Grotesk';font-size:18px}
   .reason h3{font-size:16px;color:var(--text-primary);margin-top:6px}
   .reason p{color:var(--text-secondary);font-size:13px;margin-top:6px}
   .two-col{display:grid;grid-template-columns:5fr 7fr;gap:40px;align-items:center}
 
-  /* Structure */
-  .grp-title{display:flex;align-items:center;gap:10px;margin-top:40px;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:20px}
+  .grp-title{display:flex;align-items:center;gap:10px;margin-top:40px;color:var(--cyan);font-family:'Space Grotesk';font-size:19px}
   .grp-title small{color:var(--text-muted);font-family:'Inter';font-size:13px}
   .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
   .row4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
-  .mini{background:var(--surface);border:1px solid rgba(201,168,76,.14);border-radius:14px;padding:20px}
-  .mini b{color:var(--gold);font-size:13px;font-family:'Cormorant Garamond',serif}
+  .mini{background:rgba(13,26,58,.6);border:1px solid rgba(91,141,239,.18);border-radius:14px;padding:20px;backdrop-filter:blur(4px)}
+  .mini b{color:var(--cyan);font-size:13px;font-family:'Space Grotesk'}
   .mini h3{font-size:15px;color:var(--text-primary);margin-top:4px}
   .mini p{color:var(--text-secondary);font-size:12.5px;margin-top:6px}
-  .bidang{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid rgba(201,168,76,.14);border-radius:14px;padding:16px}
-  .bidang i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--red-reog);color:#fff;font-style:normal;font-weight:700;font-family:'Cormorant Garamond';flex:none}
+  .bidang{display:flex;gap:12px;align-items:center;background:rgba(13,26,58,.6);border:1px solid rgba(91,141,239,.18);border-radius:14px;padding:16px}
+  .bidang i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--blue-bright),var(--blue));color:#fff;font-style:normal;font-weight:700;font-family:'Space Grotesk';flex:none}
   .bidang span{font-size:14px;color:var(--text-primary)}
 
-  /* Potensi */
   .assets{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
-  .asset{background:linear-gradient(170deg,var(--surface),var(--deep));border:1px solid rgba(201,168,76,.16);border-radius:18px;padding:26px;transition:.3s}
-  .asset:hover{border-color:var(--red-bright);transform:translateY(-4px)}
-  .asset span{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--red-bright)}
-  .asset h3{font-size:19px;color:var(--gold-light);margin-top:4px}
+  .asset{background:linear-gradient(170deg,rgba(13,26,58,.7),rgba(8,16,42,.7));border:1px solid rgba(91,141,239,.2);border-radius:18px;padding:26px;transition:.3s;backdrop-filter:blur(4px)}
+  .asset:hover{border-color:var(--cyan);transform:translateY(-4px)}
+  .asset span{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--cyan)}
+  .asset h3{font-size:19px;color:var(--text-primary);margin-top:4px}
   .asset p{color:var(--text-secondary);font-size:13px;margin-top:8px}
 
-  /* Roadmap */
   .road{position:relative;margin-top:56px}
-  .road-line{position:absolute;top:22px;left:0;height:2px;width:100%;transform-origin:left;background:linear-gradient(90deg,var(--gold),var(--red-reog))}
+  .road-line{position:absolute;top:22px;left:0;height:2px;width:100%;transform-origin:left;background:linear-gradient(90deg,var(--cyan),var(--blue))}
   .nodes{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-  .node .dot{width:46px;height:46px;border-radius:50%;background:var(--black);border:2px solid var(--gold);display:grid;place-items:center;font-family:'Cormorant Garamond';font-weight:700;color:var(--gold);font-size:18px}
+  .node .dot{width:46px;height:46px;border-radius:50%;background:var(--bg-black);border:2px solid var(--cyan);display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;color:var(--cyan);font-size:18px;box-shadow:0 0 24px rgba(47,216,255,.4)}
   .node h3{font-size:18px;color:var(--text-primary);margin-top:18px}
   .node p{color:var(--text-secondary);font-size:14px;margin-top:6px}
 
-  /* News */
   .news{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
-  .article{background:var(--surface);border:1px solid rgba(201,168,76,.16);border-radius:18px;overflow:hidden;transition:.3s}
-  .article:hover{border-color:var(--gold);transform:translateY(-4px)}
-  .article .cover{height:140px;background:linear-gradient(135deg,var(--gold-dark),var(--red-reog))}
+  .article{background:rgba(13,26,58,.66);border:1px solid rgba(91,141,239,.2);border-radius:18px;overflow:hidden;transition:.3s;backdrop-filter:blur(4px)}
+  .article:hover{border-color:var(--cyan);transform:translateY(-4px)}
+  .article .cover{height:130px;background:linear-gradient(135deg,var(--blue),var(--cyan))}
   .article .body{padding:22px}
   .article .tag{font-size:12px;color:var(--text-muted)}
   .article h3{font-size:17px;color:var(--text-primary);margin-top:8px;line-height:1.25}
   .article p{font-size:13px;color:var(--text-secondary);margin-top:8px}
   .events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
-  .event{display:flex;gap:16px;background:var(--surface);border:1px solid rgba(201,168,76,.14);border-radius:16px;padding:18px}
-  .event .date{flex:none;width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--red-reog));display:flex;flex-direction:column;align-items:center;justify-content:center;color:#1a1205}
-  .event .date b{font-family:'Cormorant Garamond';font-size:24px;line-height:1}
+  .event{display:flex;gap:16px;background:rgba(13,26,58,.6);border:1px solid rgba(91,141,239,.18);border-radius:16px;padding:18px;backdrop-filter:blur(4px)}
+  .event .date{flex:none;width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--blue-bright),var(--cyan));display:flex;flex-direction:column;align-items:center;justify-content:center;color:#04122e}
+  .event .date b{font-family:'Space Grotesk';font-size:24px;line-height:1}
   .event .date span{font-size:11px;font-weight:600;text-transform:uppercase}
   .event h3{font-size:15px;color:var(--text-primary)}
   .event p{font-size:12.5px;color:var(--text-secondary);margin-top:4px}
 
-  /* CTA */
-  #cta{text-align:center;padding:150px 0}
+  #cta{text-align:center;padding:160px 0}
   #cta h2{font-size:var(--fs-h1);max-width:760px;margin:18px auto 0}
   #cta .lead{margin:18px auto 0;text-align:center}
   .cta-btns{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
-  .tagline{margin-top:36px;color:var(--gold);font-family:'Cormorant Garamond';font-size:22px}
+  .tagline{margin-top:36px;color:var(--cyan);font-family:'Space Grotesk';font-size:22px}
   .hash{color:var(--text-secondary);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
 
-  /* Footer */
-  footer{position:relative;z-index:2;border-top:1px solid rgba(201,168,76,.16);background:var(--deep);padding:64px 0 32px}
+  footer{position:relative;z-index:2;border-top:1px solid rgba(91,141,239,.2);background:rgba(8,16,42,.85);backdrop-filter:blur(10px);padding:64px 0 32px}
   .foot{display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:40px}
   .foot p{color:var(--text-secondary);font-size:14px;margin-top:14px;max-width:340px}
   .foot h4{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--text-muted)}
   .foot ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:9px}
   .foot ul a{color:var(--text-secondary);font-size:14px}
-  .foot ul a:hover{color:var(--gold)}
+  .foot ul a:hover{color:var(--cyan)}
   .socials{display:flex;gap:10px;margin-top:14px}
-  .socials a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,168,76,.25);color:var(--text-secondary);transition:.2s}
-  .socials a:hover{color:var(--gold);border-color:var(--gold)}
-  .copy{margin-top:48px;padding-top:24px;border-top:1px solid rgba(201,168,76,.12);text-align:center;color:var(--text-muted);font-size:13px}
+  .socials a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(91,141,239,.3);color:var(--text-secondary);transition:.2s;font-size:12px;font-weight:600}
+  .socials a:hover{color:var(--cyan);border-color:var(--cyan)}
+  .copy{margin-top:48px;padding-top:24px;border-top:1px solid rgba(91,141,239,.16);text-align:center;color:var(--text-muted);font-size:13px}
 
-  .reveal{opacity:1}
   @media (prefers-reduced-motion:no-preference){.reveal{opacity:0}}
 
-  /* Responsive */
   @media(max-width:900px){
     .two-col{grid-template-columns:1fr}
     .stats-grid,.subs,.assets{grid-template-columns:repeat(2,1fr)}
@@ -205,7 +168,7 @@
     .foot{grid-template-columns:1fr}
   }
   @media(max-width:768px){
-    .menu{position:fixed;inset:74px 0 auto 0;background:rgba(10,8,6,.97);backdrop-filter:blur(20px);flex-direction:column;gap:0;padding:10px 0;transform:translateY(-120%);transition:.35s;border-bottom:1px solid rgba(201,168,76,.16)}
+    .menu{position:fixed;inset:74px 0 auto 0;background:rgba(5,8,20,.97);backdrop-filter:blur(20px);flex-direction:column;gap:0;padding:10px 0;transform:translateY(-130%);transition:.35s;border-bottom:1px solid rgba(46,107,255,.2)}
     .menu.open{transform:translateY(0)}
     .menu a{padding:14px 24px;width:100%}
     .menu .btn{margin:10px 24px}
@@ -225,28 +188,26 @@
       <a href="#struktur">Struktur</a>
       <a href="#program">Program</a>
       <a href="#berita">Berita</a>
-      <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-gold">Gabung GEKRAFS ›</a>
+      <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-blue">Gabung GEKRAFS ›</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero">
-  <div class="wrap hero-in">
+<section id="hero" class="hero" data-scene="net">
+  <div class="wrap">
     <span class="label reveal">DPC Ponorogo · Resmi</span>
     <h1 class="reveal">Membangun Masa Depan<br/>Ekonomi Kreatif Ponorogo</h1>
     <p class="lead reveal">Kolaborasi pelaku kreatif, UMKM, komunitas, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital yang hidup dari setiap event.</p>
     <div class="hero-cta reveal">
-      <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-gold">Gabung GEKRAFS ›</a>
+      <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-blue">Gabung GEKRAFS ›</a>
       <a href="https://gekrafsponorogo.my.id/program" class="btn btn-ghost">Lihat Program</a>
     </div>
   </div>
   <div class="scroll-hint">Gulir</div>
 </section>
 
-<!-- STATS -->
-<section id="stats">
+<section id="stats" class="stage" data-scene="crystals">
   <div class="wrap">
     <span class="label reveal">Kekuatan GEKRAFS se-Indonesia</span>
     <h2 class="h-section reveal">Jaringan nasional yang terus tumbuh</h2>
@@ -259,16 +220,15 @@
   </div>
 </section>
 
-<!-- TENTANG -->
-<section id="tentang">
+<section id="tentang" data-scene="globe">
   <div class="wrap">
     <span class="label reveal">Tentang GEKRAFS</span>
     <h2 class="h-section reveal">Apa itu GEKRAFS</h2>
     <p class="lead reveal">GEKRAFS (Gerakan Ekonomi Kreatif Nasional) adalah perkumpulan yang menjadi wadah komunikasi, konsultasi, fasilitator, dan kemitraan bagi pegiat ekonomi kreatif di seluruh subsektor — dengan tujuan meningkatkan perekonomian nasional.</p>
     <div class="pillars">
-      <div class="pillar reveal"><div class="mk">✦</div><h3>Wadah resmi pegiat ekraf nasional</h3><p>Rumah bersama bagi pelaku kreatif lintas subsektor.</p></div>
-      <div class="pillar reveal"><div class="mk">✦</div><h3>Konsultasi, fasilitasi & kemitraan</h3><p>Pendampingan, akses jejaring, dan kolaborasi strategis.</p></div>
-      <div class="pillar reveal"><div class="mk">✦</div><h3>Naikkan perekonomian nasional</h3><p>Mendorong ekraf sebagai motor pertumbuhan ekonomi.</p></div>
+      <div class="card-b pillar reveal"><div class="mk">✦</div><h3>Wadah resmi pegiat ekraf nasional</h3><p>Rumah bersama bagi pelaku kreatif lintas subsektor.</p></div>
+      <div class="card-b pillar reveal"><div class="mk">✦</div><h3>Konsultasi, fasilitasi & kemitraan</h3><p>Pendampingan, akses jejaring, dan kolaborasi strategis.</p></div>
+      <div class="card-b pillar reveal"><div class="mk">✦</div><h3>Naikkan perekonomian nasional</h3><p>Mendorong ekraf sebagai motor pertumbuhan ekonomi.</p></div>
     </div>
     <div class="legal reveal">
       <div><span>Didirikan</span><b>26 November 2019, Jakarta</b></div>
@@ -279,14 +239,13 @@
   </div>
 </section>
 
-<!-- VISI MISI -->
-<section id="visi">
+<section id="visi" class="stage">
   <div class="wrap">
     <span class="label reveal">Arah & Cara Kita Bergerak</span>
     <h2 class="h-section reveal">Visi, Misi & Prinsip</h2>
     <div class="vm">
-      <div class="card reveal"><span>Visi</span><p>Menghimpun dan membina pegiat ekonomi kreatif nasional.</p></div>
-      <div class="card reveal"><span>Misi</span><p>Menjadi wadah komunikasi, konsultasi, fasilitator, dan kemitraan bagi pegiat ekonomi kreatif.</p></div>
+      <div class="card-b reveal"><span>Visi</span><p>Menghimpun dan membina pegiat ekonomi kreatif nasional.</p></div>
+      <div class="card-b reveal"><span>Misi</span><p>Menjadi wadah komunikasi, konsultasi, fasilitator, dan kemitraan bagi pegiat ekonomi kreatif.</p></div>
     </div>
     <div class="principles">
       <div class="principle reveal"><h3>Berdaya</h3><p>Memberdayakan pelaku kreatif agar mandiri dan berkembang.</p></div>
@@ -296,21 +255,16 @@
   </div>
 </section>
 
-<!-- SUBSEKTOR -->
-<section id="subsektor">
+<section id="subsektor" data-scene="orbital">
   <div class="wrap">
     <span class="label reveal">Ruang Gerak Kita</span>
     <h2 class="h-section reveal">17 Subsektor Ekonomi Kreatif</h2>
     <p class="lead reveal">Setiap subsektor punya rumahnya di GEKRAFS — wadah teknis bagi para pelaku untuk tumbuh dan berkolaborasi.</p>
-    <div class="orbit-wrap">
-      <div class="ring"></div><div class="ring r2"></div>
-      <div class="subs" id="subs"></div>
-    </div>
+    <div class="subs" id="subs"></div>
   </div>
 </section>
 
-<!-- GREBEG -->
-<section id="grebeg">
+<section id="grebeg" class="stage" data-scene="morph">
   <div class="wrap two-col">
     <div>
       <span class="label reveal">Kenapa Pemuda Grebeg Suro</span>
@@ -326,8 +280,7 @@
   </div>
 </section>
 
-<!-- STRUKTUR -->
-<section id="struktur">
+<section id="struktur" data-scene="tree">
   <div class="wrap">
     <span class="label reveal">Struktur DPC Ponorogo</span>
     <h2 class="h-section reveal">Legitimasi, kepemimpinan &amp; bidang kerja</h2>
@@ -350,8 +303,7 @@
   </div>
 </section>
 
-<!-- POTENSI -->
-<section id="program">
+<section id="program" class="stage" data-scene="cubes">
   <div class="wrap">
     <span class="label reveal">Potensi Ekraf Ponorogo</span>
     <h2 class="h-section reveal">Modal yang sudah kita miliki</h2>
@@ -364,7 +316,6 @@
   </div>
 </section>
 
-<!-- ROADMAP -->
 <section id="roadmap">
   <div class="wrap">
     <span class="label reveal">Roadmap Pembentukan &amp; Aksi</span>
@@ -381,8 +332,7 @@
   </div>
 </section>
 
-<!-- BERITA -->
-<section id="berita">
+<section id="berita" class="stage">
   <div class="wrap">
     <span class="label reveal">Media Center</span>
     <h2 class="h-section reveal">Berita &amp; Kegiatan Terbaru</h2>
@@ -399,14 +349,13 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section id="cta">
+<section id="cta" data-scene="burst">
   <div class="wrap">
     <span class="label reveal" style="justify-content:center">Saatnya Bergerak Bersama</span>
     <h2 class="reveal">Dari volunteer menjadi penggerak ekonomi kreatif.</h2>
     <p class="lead reveal">Ponorogo kreatif dimulai dari kita.</p>
     <div class="cta-btns reveal">
-      <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-gold">Gabung GEKRAFS Ponorogo ›</a>
+      <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-blue">Gabung GEKRAFS Ponorogo ›</a>
       <a href="https://gekrafsponorogo.my.id/program" class="btn btn-ghost">Lihat Program</a>
     </div>
     <div class="tagline reveal">Ekraf Bangkit, Indonesia Maju</div>
@@ -458,7 +407,7 @@
 <script type="module">
 import * as THREE from 'three';
 
-/* ---------- Static content injection ---------- */
+/* ---------------- static content ---------------- */
 const SUBS = [
   ["01","Kuliner","Cita rasa khas Ponorogo yang siap naik kelas."],
   ["02","Fashion","Busana & wastra dengan identitas lokal."],
@@ -480,158 +429,280 @@ const SUBS = [
 ];
 document.getElementById('subs').innerHTML = SUBS.map(s =>
   `<div class="sub reveal"><div class="no">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join('');
-
 const BIDANG = ["Program & Strategi","Pengembangan Talenta","Pemasaran, Media & Kerjasama","HAKI, Hukum & Advokasi","Event & Sosialisasi Program","Organisasi & Kaderisasi","Pembinaan Potensi Ekraf","Riset & Pelestarian Budaya"];
 document.getElementById('bidang').innerHTML = BIDANG.map((b,i)=>
   `<div class="bidang reveal"><i>${i+1}</i><span>${b}</span></div>`).join('');
 
-/* ---------- Header + mobile menu ---------- */
+/* ---------------- header + menu ---------------- */
 const hdr = document.getElementById('hdr');
 addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 20), {passive:true});
 const burger = document.getElementById('burger'), menu = document.getElementById('menu');
 burger.addEventListener('click', () => menu.classList.toggle('open'));
 menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 
-/* ---------- GSAP reveals, counters, roadmap ---------- */
+/* ---------------- GSAP reveals, counters, roadmap ---------------- */
 const gsap = window.gsap, ScrollTrigger = window.ScrollTrigger;
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (gsap && !reduceMotion) {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (gsap && !reduce) {
   gsap.registerPlugin(ScrollTrigger);
   gsap.utils.toArray('.reveal').forEach(el => {
-    gsap.to(el, { opacity:1, y:0, duration:1, ease:'power3.out',
-      scrollTrigger:{ trigger:el, start:'top 88%' } });
-    gsap.from(el, { y:50, duration:1, ease:'power3.out',
-      scrollTrigger:{ trigger:el, start:'top 88%' } });
+    gsap.to(el, { opacity:1, y:0, duration:.9, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 90%' } });
+    gsap.from(el, { y:46, duration:.9, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 90%' } });
   });
-  // counters
   gsap.utils.toArray('[data-count]').forEach(el => {
-    const target = +el.dataset.count, suffix = el.dataset.suffix || '';
-    const obj = { v:0 };
-    ScrollTrigger.create({ trigger:el, start:'top 85%', once:true, onEnter:() => {
-      gsap.to(obj, { v:target, duration:1.6, ease:'power2.out', onUpdate:() => {
-        el.textContent = (target >= 1000 ? Math.round(obj.v/1000) : Math.round(obj.v)) + suffix;
-      }});
-    }});
+    const target = +el.dataset.count, suffix = el.dataset.suffix || '', o = { v:0 };
+    ScrollTrigger.create({ trigger:el, start:'top 88%', once:true, onEnter:() =>
+      gsap.to(o, { v:target, duration:1.6, ease:'power2.out', onUpdate:() =>
+        el.textContent = (target >= 1000 ? Math.round(o.v/1000) : Math.round(o.v)) + suffix }) });
   });
-  // roadmap line grow
   gsap.fromTo('#roadLine', { scaleX:0 }, { scaleX:1, ease:'none',
     scrollTrigger:{ trigger:'#roadmap', start:'top 70%', end:'bottom 70%', scrub:true } });
 } else {
   document.querySelectorAll('.reveal').forEach(el => el.style.opacity = 1);
   document.querySelectorAll('[data-count]').forEach(el => {
-    const t = +el.dataset.count; el.textContent = (t>=1000?Math.round(t/1000):t)+(el.dataset.suffix||'');
-  });
+    const t = +el.dataset.count; el.textContent = (t>=1000?Math.round(t/1000):t)+(el.dataset.suffix||''); });
 }
 
-/* ---------- Three.js: Reog particle universe ---------- */
+/* ---------------- Three.js: one renderer, scene per section ---------------- */
 const canvas = document.getElementById('webgl');
-let renderer, scene, camera, points, geometry, material, raf;
-let COUNT = matchMedia('(max-width:768px)').matches ? 14000 : 46000;
-if ((navigator.hardwareConcurrency || 8) < 4) COUNT = Math.floor(COUNT * 0.5);
-
-let velocities, exploding = false, exTime = 0;
-let mx = 0, my = 0, tmx = 0, tmy = 0;
-
-function initThree() {
+if (reduce) { canvas.style.display = 'none'; }
+else {
+  let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(innerWidth, innerHeight);
-  } catch (e) { canvas.style.display = 'none'; return; }
+    renderer.autoClear = false;
+  } catch (e) { canvas.style.display = 'none'; }
 
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, 0.1, 2000);
-  camera.position.z = 360;
+  if (renderer) {
+    const isMobile = matchMedia('(max-width:768px)').matches;
+    const lowCPU = (navigator.hardwareConcurrency || 8) < 4;
+    const scale = (n) => Math.floor(n * (isMobile ? 0.45 : 1) * (lowCPU ? 0.6 : 1));
+    const C = { blue:0x1B4DC4, bright:0x2E6BFF, light:0x5B8DEF, cyan:0x2FD8FF };
+    const COL = { blue:new THREE.Color(C.blue), bright:new THREE.Color(C.bright), cyan:new THREE.Color(C.cyan), light:new THREE.Color(C.light) };
+    let mx = 0, my = 0, tmx = 0, tmy = 0;
+    addEventListener('mousemove', e => { tmx = e.clientX/innerWidth - 0.5; tmy = e.clientY/innerHeight - 0.5; }, {passive:true});
 
-  const pos = new Float32Array(COUNT*3);
-  const col = new Float32Array(COUNT*3);
-  velocities = new Float32Array(COUNT*3);
-  const gold = new THREE.Color(0xC9A84C), goldL = new THREE.Color(0xE8C97A),
-        redB = new THREE.Color(0xC0392B);
+    function cam(z){ const c = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 4000); c.position.z = z; return c; }
 
-  for (let i = 0; i < COUNT; i++) {
-    const ang = (Math.random()*2 - 1) * (Math.PI*0.62);     // peacock fan spread
-    const r = 60 + Math.pow(Math.random(), 0.7) * 235;
-    let x = Math.sin(ang) * r;
-    let y = Math.cos(ang) * r - 70 + Math.sin(r*0.05)*4;
-    let z = Math.cos(ang) * (r*0.18) * (Math.random()*0.6 + 0.4) - 20 + (Math.random()-0.5)*28;
-    if (i % 9 === 0) {                                       // face cluster (Dadak Merak)
-      const fa = Math.random()*Math.PI*2, fr = Math.random()*46;
-      x = Math.cos(fa)*fr; y = -42 + Math.sin(fa)*fr; z = (Math.random()-0.5)*22;
+    /* ---- ambient dust (always on) ---- */
+    const ambCam = cam(400);
+    const ambScene = new THREE.Scene();
+    {
+      const n = scale(900), pos = new Float32Array(n*3), v = new Float32Array(n);
+      for (let i=0;i<n;i++){ pos[i*3]=(Math.random()-.5)*900; pos[i*3+1]=(Math.random()-.5)*700; pos[i*3+2]=(Math.random()-.5)*500; v[i]=Math.random()*6+2; }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const m = new THREE.PointsMaterial({ size:1.4, color:C.light, transparent:true, opacity:.32, blending:THREE.AdditiveBlending, depthWrite:false });
+      const pts = new THREE.Points(g,m); ambScene.add(pts);
+      ambScene.userData.update = (dt)=>{ const p=g.attributes.position.array; for(let i=0;i<n;i++){ p[i*3+1]+=v[i]*dt; if(p[i*3+1]>350)p[i*3+1]=-350; } g.attributes.position.needsUpdate=true; pts.rotation.y+=dt*0.02; };
     }
-    pos[i*3] = x; pos[i*3+1] = y; pos[i*3+2] = z;
 
-    const cmix = Math.min(Math.max((r-60)/235, 0), 1);
-    const c = gold.clone().lerp(redB, cmix*0.72);
-    if (Math.random() < 0.12) c.copy(goldL);
-    col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+    /* ---- helpers ---- */
+    function makePoints(n, spread, color, size, op){
+      const pos = new Float32Array(n*3);
+      for (let i=0;i<n*3;i++) pos[i]=(Math.random()-.5)*spread;
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const m = new THREE.PointsMaterial({ size, color, transparent:true, opacity:op, blending:THREE.AdditiveBlending, depthWrite:false });
+      return { g, pts:new THREE.Points(g,m) };
+    }
 
-    const len = Math.hypot(x, y, z) || 1;
-    velocities[i*3]   = x/len*(Math.random()*2+1) + (Math.random()-0.5);
-    velocities[i*3+1] = y/len*(Math.random()*2+1) + Math.random()*2;
-    velocities[i*3+2] = z/len*(Math.random()*2+1);
-  }
+    const scenes = {};
 
-  geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  material = new THREE.PointsMaterial({
-    size: matchMedia('(max-width:768px)').matches ? 1.7 : 1.5,
-    vertexColors: true, transparent: true, opacity: 0.92,
-    blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
-  });
-  points = new THREE.Points(geometry, material);
-  points.position.y = 30;
-  scene.add(points);
+    /* ===== Scene NET: constellation network ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(420), N = scale(320);
+      const pos = new Float32Array(N*3), vel = new Float32Array(N*3);
+      for (let i=0;i<N;i++){ pos[i*3]=(Math.random()-.5)*620; pos[i*3+1]=(Math.random()-.5)*420; pos[i*3+2]=(Math.random()-.5)*360;
+        vel[i*3]=(Math.random()-.5)*8; vel[i*3+1]=(Math.random()-.5)*8; vel[i*3+2]=(Math.random()-.5)*8; }
+      const ng = new THREE.BufferGeometry(); ng.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const nodes = new THREE.Points(ng, new THREE.PointsMaterial({ size:3, color:C.cyan, transparent:true, opacity:.95, blending:THREE.AdditiveBlending, depthWrite:false }));
+      const maxL = N*5; const lp = new Float32Array(maxL*6);
+      const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.BufferAttribute(lp,3));
+      const lines = new THREE.LineSegments(lg, new THREE.LineBasicMaterial({ color:C.bright, transparent:true, opacity:.22, blending:THREE.AdditiveBlending }));
+      s.add(nodes); s.add(lines);
+      const TH = 86, TH2 = TH*TH;
+      s.userData.update = (dt)=>{
+        for (let i=0;i<N;i++){
+          pos[i*3]+=vel[i*3]*dt; pos[i*3+1]+=vel[i*3+1]*dt; pos[i*3+2]+=vel[i*3+2]*dt;
+          for (let a=0;a<3;a++){ const lim=[310,210,180][a]; if(pos[i*3+a]>lim||pos[i*3+a]<-lim) vel[i*3+a]*=-1; }
+          // gentle pull toward mouse point
+          pos[i*3]   += (mx*260 - pos[i*3])  *0.0008;
+          pos[i*3+1] += (-my*180 - pos[i*3+1])*0.0008;
+        }
+        ng.attributes.position.needsUpdate = true;
+        let k=0;
+        for (let i=0;i<N && k<maxL;i++) for (let j=i+1;j<N && k<maxL;j++){
+          const dx=pos[i*3]-pos[j*3], dy=pos[i*3+1]-pos[j*3+1], dz=pos[i*3+2]-pos[j*3+2];
+          const d2=dx*dx+dy*dy+dz*dz;
+          if (d2<TH2){ lp[k*6]=pos[i*3];lp[k*6+1]=pos[i*3+1];lp[k*6+2]=pos[i*3+2];lp[k*6+3]=pos[j*3];lp[k*6+4]=pos[j*3+1];lp[k*6+5]=pos[j*3+2]; k++; }
+        }
+        lg.setDrawRange(0,k*2); lg.attributes.position.needsUpdate=true;
+        s.rotation.y += dt*0.04;
+      };
+      scenes.net = { s, c };
+    })();
 
-  addEventListener('mousemove', e => {
-    tmx = (e.clientX/innerWidth - 0.5);
-    tmy = (e.clientY/innerHeight - 0.5);
-  }, {passive:true});
-  addEventListener('resize', onResize);
-
-  // canvas dims to keep content readable, restores + explodes at CTA
-  if (gsap && !reduceMotion) {
-    gsap.to(canvas, { opacity:0.16, ease:'none',
-      scrollTrigger:{ trigger:'#hero', start:'bottom bottom', end:'bottom top', scrub:true } });
-    ScrollTrigger.create({ trigger:'#cta', start:'top 65%', once:true, onEnter:() => {
-      gsap.to(canvas, { opacity:0.95, duration:1.2 });
-      exploding = true; exTime = 0;
-    }});
-  }
-
-  const clock = new THREE.Clock();
-  (function loop() {
-    raf = requestAnimationFrame(loop);
-    const dt = Math.min(clock.getDelta(), 0.05);
-    mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
-    if (!exploding) {
-      points.rotation.y += 0.0011;
-      points.rotation.x = my * 0.32;
-      points.rotation.z = mx * 0.05;
-    } else {
-      exTime += dt;
-      const p = geometry.attributes.position.array;
-      for (let i = 0; i < COUNT; i++) {
-        p[i*3]   += velocities[i*3]   * dt * 34;
-        p[i*3+1] += velocities[i*3+1] * dt * 34; velocities[i*3+1] -= dt * 11;
-        p[i*3+2] += velocities[i*3+2] * dt * 34;
+    /* ===== Scene CRYSTALS: floating octahedra (glass-like) ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(360);
+      const items = [];
+      const xs = [-180,-60,60,180];
+      for (let i=0;i<4;i++){
+        const geo = new THREE.OctahedronGeometry(46,0);
+        const solid = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color:C.bright, transparent:true, opacity:.16, blending:THREE.AdditiveBlending, depthWrite:false }));
+        const wire = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color:C.cyan, transparent:true, opacity:.8 }));
+        const grp = new THREE.Group(); grp.add(solid); grp.add(wire); grp.position.x = xs[i]; grp.userData.off = i*1.3;
+        s.add(grp); items.push(grp);
       }
-      geometry.attributes.position.needsUpdate = true;
-      material.opacity = Math.max(0, 0.92 - exTime/3.4 * 0.92);
-    }
-    renderer.render(scene, camera);
-  })();
-}
+      let t=0; s.userData.update = (dt)=>{ t+=dt; items.forEach((g,i)=>{ g.rotation.x+=dt*0.5; g.rotation.y+=dt*0.6; g.position.y=Math.sin(t+g.userData.off)*22; }); };
+      scenes.crystals = { s, c };
+    })();
 
-function onResize() {
-  if (!renderer) return;
-  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
-  renderer.setSize(innerWidth, innerHeight);
-}
+    /* ===== Scene GLOBE: wireframe icosahedron ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(300);
+      const geo = new THREE.IcosahedronGeometry(110,2);
+      const globe = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color:C.light, transparent:true, opacity:.55 }));
+      const inner = new THREE.Mesh(new THREE.SphereGeometry(104,24,24), new THREE.MeshBasicMaterial({ color:C.blue, transparent:true, opacity:.10 }));
+      const mk = makePoints(scale(420), 300, C.cyan, 2, .6);
+      const grp = new THREE.Group(); grp.add(globe); grp.add(inner); grp.add(mk.pts); s.add(grp);
+      s.userData.update = (dt)=>{ grp.rotation.y+=dt*0.18; grp.rotation.x = my*0.2; mk.pts.rotation.y -= dt*0.05; };
+      scenes.globe = { s, c };
+    })();
 
-if (!reduceMotion) initThree();
-else canvas.style.display = 'none';
+    /* ===== Scene ORBITAL: rings of nodes + center glow ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(360);
+      const center = new THREE.Mesh(new THREE.SphereGeometry(16,24,24), new THREE.MeshBasicMaterial({ color:C.cyan, transparent:true, opacity:.9, blending:THREE.AdditiveBlending }));
+      s.add(center);
+      const rings = [ {r:120,n:6,sp:.5}, {r:190,n:6,sp:-.34}, {r:260,n:5,sp:.24} ];
+      const grp = new THREE.Group(); s.add(grp);
+      rings.forEach(ring => {
+        const rg = new THREE.Group(); rg.userData.sp = ring.sp;
+        const torus = new THREE.Mesh(new THREE.TorusGeometry(ring.r,0.6,8,80), new THREE.MeshBasicMaterial({ color:C.bright, transparent:true, opacity:.18 }));
+        torus.rotation.x = Math.PI/2; rg.add(torus);
+        for (let i=0;i<ring.n;i++){ const a=(i/ring.n)*Math.PI*2;
+          const node = new THREE.Mesh(new THREE.SphereGeometry(7,16,16), new THREE.MeshBasicMaterial({ color:C.cyan, transparent:true, opacity:.9, blending:THREE.AdditiveBlending }));
+          node.position.set(Math.cos(a)*ring.r,0,Math.sin(a)*ring.r); rg.add(node); }
+        rg.rotation.x = 0.5; grp.add(rg);
+      });
+      let t=0; s.userData.update = (dt)=>{ t+=dt; grp.children.forEach(rg=>rg.rotation.y+=dt*rg.userData.sp); center.scale.setScalar(1+Math.sin(t*2)*0.12); grp.rotation.z = mx*0.2; };
+      scenes.orbital = { s, c };
+    })();
+
+    /* ===== Scene MORPH: chaos -> order (scroll driven) ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(420), N = scale(9000);
+      const chaos = new Float32Array(N*3), order = new Float32Array(N*3), cur = new Float32Array(N*3);
+      const side = Math.ceil(Math.cbrt(N));
+      for (let i=0;i<N;i++){
+        chaos[i*3]=(Math.random()-.5)*640; chaos[i*3+1]=(Math.random()-.5)*420; chaos[i*3+2]=(Math.random()-.5)*360;
+        const ix=i%side, iy=Math.floor(i/side)%side, iz=Math.floor(i/(side*side));
+        order[i*3]=(ix/side-.5)*420; order[i*3+1]=(iy/side-.5)*300; order[i*3+2]=(iz/side-.5)*300;
+        cur[i*3]=chaos[i*3];cur[i*3+1]=chaos[i*3+1];cur[i*3+2]=chaos[i*3+2];
+      }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(cur,3));
+      const m = new THREE.PointsMaterial({ size:2, color:C.cyan, transparent:true, opacity:.8, blending:THREE.AdditiveBlending, depthWrite:false });
+      const pts = new THREE.Points(g,m); s.add(pts);
+      const el = document.getElementById('grebeg');
+      s.userData.update = (dt)=>{
+        const r = el.getBoundingClientRect();
+        let p = 1 - (r.top + r.height*0.2) / innerHeight; p = Math.max(0, Math.min(1, p));
+        for (let i=0;i<N*3;i++) cur[i] += (( chaos[i] + (order[i]-chaos[i])*p ) - cur[i]) * 0.1;
+        g.attributes.position.needsUpdate = true;
+        m.color.copy(COL.cyan).lerp(COL.blue, p);
+        pts.rotation.y += dt*0.05;
+      };
+      scenes.morph = { s, c };
+    })();
+
+    /* ===== Scene TREE: org hierarchy nodes ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(360), grp = new THREE.Group(); s.add(grp);
+      const layers = [ [0], [-110,0,110], [-165,-55,55,165], [-210,-150,-90,-30,30,90,150,210] ];
+      const ys = [150, 60, -30, -130];
+      const nodeMat = new THREE.MeshBasicMaterial({ color:C.bright, transparent:true, opacity:.95, blending:THREE.AdditiveBlending });
+      const lineMat = new THREE.LineBasicMaterial({ color:C.light, transparent:true, opacity:.3 });
+      const positions = [];
+      layers.forEach((xs,li)=>{ positions[li]=[]; xs.forEach(x=>{ const r=[14,10,8,6][li];
+        const m = new THREE.Mesh(new THREE.SphereGeometry(r,16,16), nodeMat); m.position.set(x*0.7, ys[li], (Math.random()-.5)*40); grp.add(m); positions[li].push(m.position); }); });
+      const lpts = [];
+      for (let li=0; li<layers.length-1; li++) positions[li].forEach(pa=> positions[li+1].forEach(pb=>{ lpts.push(pa.x,pa.y,pa.z,pb.x,pb.y,pb.z); }));
+      const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lpts,3));
+      grp.add(new THREE.LineSegments(lg, lineMat));
+      s.userData.update = (dt)=>{ grp.rotation.y += dt*0.12; grp.rotation.x = my*0.15 + 0.05; };
+      scenes.tree = { s, c };
+    })();
+
+    /* ===== Scene CUBES: floating tech cubes ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(360), items=[]; const xs=[-210,-70,70,210];
+      for (let i=0;i<4;i++){ const geo=new THREE.BoxGeometry(64,64,64);
+        const solid=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:C.blue,transparent:true,opacity:.18,blending:THREE.AdditiveBlending,depthWrite:false}));
+        const wire=new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:C.cyan,transparent:true,opacity:.85}));
+        const g=new THREE.Group(); g.add(solid); g.add(wire); g.position.x=xs[i]; g.userData.off=i*1.1; g.userData.sp=0.4+i*0.12; s.add(g); items.push(g); }
+      let t=0; s.userData.update=(dt)=>{ t+=dt; items.forEach(g=>{ g.rotation.x+=dt*g.userData.sp; g.rotation.y+=dt*g.userData.sp*0.8; g.position.y=Math.sin(t+g.userData.off)*20; }); };
+      scenes.cubes = { s, c };
+    })();
+
+    /* ===== Scene BURST: energy explosion + shockwave ===== */
+    (() => {
+      const s = new THREE.Scene(), c = cam(420), N = scale(8000);
+      const pos = new Float32Array(N*3), vel = new Float32Array(N*3);
+      for (let i=0;i<N;i++){ const th=Math.random()*Math.PI*2, ph=Math.acos(Math.random()*2-1), sp=Math.random()*180+40;
+        pos[i*3]=0;pos[i*3+1]=0;pos[i*3+2]=0;
+        vel[i*3]=Math.sin(ph)*Math.cos(th)*sp; vel[i*3+1]=Math.sin(ph)*Math.sin(th)*sp; vel[i*3+2]=Math.cos(ph)*sp; }
+      const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+      const m=new THREE.PointsMaterial({size:2.4,color:C.cyan,transparent:true,opacity:.95,blending:THREE.AdditiveBlending,depthWrite:false});
+      const pts=new THREE.Points(g,m); s.add(pts);
+      const ring=new THREE.Mesh(new THREE.RingGeometry(8,11,64), new THREE.MeshBasicMaterial({color:C.bright,transparent:true,opacity:.7,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}));
+      s.add(ring);
+      let fired=false, t=0;
+      s.userData.fire = ()=>{ fired=true; t=0; for(let i=0;i<N*3;i++)pos[i]=0; ring.scale.setScalar(1); ring.material.opacity=.7; };
+      s.userData.update=(dt)=>{
+        if(!fired){ s.userData.fire(); }
+        t+=dt; const p=g.attributes.position.array;
+        for(let i=0;i<N;i++){ p[i*3]+=vel[i*3]*dt; p[i*3+1]+=vel[i*3+1]*dt; p[i*3+2]+=vel[i*3+2]*dt; }
+        g.attributes.position.needsUpdate=true;
+        m.opacity=Math.max(0,.95 - (t%3.4)/3.4*0.95);
+        const rs=1+(t%3.4)*9; ring.scale.setScalar(rs); ring.material.opacity=Math.max(0,.7-(t%3.4)/3.4*0.7);
+        if(t> 3.4){ t=0; for(let i=0;i<N*3;i++)p[i]=0; }
+        s.rotation.y+=dt*0.05;
+      };
+      scenes.burst = { s, c };
+    })();
+
+    /* ---- active scene selection via IntersectionObserver ---- */
+    let active = null, ratios = new Map();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => ratios.set(e.target.dataset.scene, e.isIntersecting ? e.intersectionRatio : 0));
+      let best = null, bestR = 0.05;
+      ratios.forEach((r,k) => { if (r > bestR) { bestR = r; best = k; } });
+      if (best && best !== active) { active = best; if (active === 'burst' && scenes.burst.s.userData.fire) scenes.burst.s.userData.fire(); }
+      if (!best) active = active; // keep last
+    }, { threshold:[0,.15,.3,.5,.7] });
+    document.querySelectorAll('[data-scene]').forEach(el => io.observe(el));
+
+    addEventListener('resize', () => {
+      renderer.setSize(innerWidth, innerHeight);
+      ambCam.aspect = innerWidth/innerHeight; ambCam.updateProjectionMatrix();
+      Object.values(scenes).forEach(o => { o.c.aspect = innerWidth/innerHeight; o.c.updateProjectionMatrix(); });
+    });
+
+    const clock = new THREE.Clock();
+    (function loop(){
+      requestAnimationFrame(loop);
+      const dt = Math.min(clock.getDelta(), 0.05);
+      mx += (tmx - mx)*0.05; my += (tmy - my)*0.05;
+      renderer.clear();
+      ambScene.userData.update(dt);
+      renderer.render(ambScene, ambCam);
+      const cur = active && scenes[active];
+      if (cur) { cur.s.userData.update(dt); renderer.render(cur.s, cur.c); }
+    })();
+  }
+}
 </script>
 </body>
 </html>
