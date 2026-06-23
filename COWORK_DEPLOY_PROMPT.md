@@ -1,107 +1,111 @@
-# 🤝 Prompt untuk Cowork — Deploy GEKRAFS Ponorogo (end-to-end)
+# 🤝 Prompt untuk Cowork — Finalisasi & Verifikasi Deploy GEKRAFS Ponorogo
 
-Salin SELURUH blok di bawah ini dan paste ke agent **cowork** kamu (yang sudah
-punya akses terminal/browser ke akun Vercel, Supabase, dan DomaiNesia).
+Salin SELURUH blok di bawah ke agent **cowork** kamu (yang punya akses ke akun
+Vercel, Supabase, dan DomaiNesia). Tujuannya: memastikan situs LIVE & benar di
+**https://gekrafsponorogo.my.id**, mengaktifkan database + panel admin, dan
+verifikasi semua alur sampai tuntas.
 
 ---
 
 ```
-ROLE: Kamu adalah DevOps engineer. Tugasmu men-deploy sebuah website Next.js 15
-ke Vercel sampai LIVE di domain kustom, mengaktifkan database Supabase, dan
-mengatur DNS. Kerjakan sampai tuntas, verifikasi tiap langkah, dan laporkan
-URL final + status HTTPS. Jangan berhenti sebelum situs bisa diakses di
-https://gekrafsponorogo.my.id.
+ROLE: Kamu DevOps + QA engineer. Situs sudah ada di GitHub & sudah pernah
+deploy ke Vercel dengan domain gekrafsponorogo.my.id. Tugasmu FINALISASI:
+pastikan production live & benar setelah perubahan terbaru (homepage kini
+versi 3D), set/verifikasi semua environment variable, aktifkan Supabase +
+panel admin, dan verifikasi end-to-end. Kerjakan sampai tuntas, jangan
+berhenti sebelum semua checklist VERIFIKASI hijau.
 
-KONTEKS PROYEK
-- Repo GitHub  : https://github.com/panjivr/gekrafsponorogo
-- Branch deploy: main
-- Framework    : Next.js 15 (App Router), build "next build", output ".next"
-- Node         : 20 atau 22
-- Domain       : gekrafsponorogo.my.id (registrar: DomaiNesia, sudah Active)
-- Tujuan       : Vercel (hosting) + Supabase (DB) + DNS di DomaiNesia
-- Catatan      : Tanpa env Supabase, situs tetap jalan pakai seed data. Dengan
-                 Supabase, konten Berita/Event/Anggota & form pendaftaran live.
+KONTEKS REPO
+- Repo    : https://github.com/panjivr/gekrafsponorogo
+- Branch  : main  (Vercel auto-deploy setiap push ke main)
+- Stack   : Next.js 15 (App Router) + TypeScript + Tailwind v4
+- Domain  : gekrafsponorogo.my.id (registrar DomaiNesia, status Active)
+- Node    : 20 atau 22
+
+APA YANG SUDAH ADA DI KODE
+- Root "/"  = landing 3D WebGL immersive (Three.js + GSAP, tema Reog emas/merah),
+  dilayani lewat rewrite next.config "/" -> "/3d/index.html"
+  (file: public/3d/index.html ; sumber: webgl/index.html).
+- Halaman fungsional (Next.js): /daftar (form pendaftaran -> tabel Supabase
+  `members`), /berita, /berita/[slug], /event, /anggota (direktori, hanya
+  status approved), /program, /tentang, /struktur, /kontak.
+- Panel admin: /admin (login pakai ADMIN_PASSWORD) -> lihat & kelola pendaftar
+  (Setujui/Tolak). Anggota approved otomatis tampil di /anggota.
+- Tanpa env Supabase, situs tetap tampil (seed data) & /admin tampil instruksi.
 
 LANGKAH 1 — SUPABASE (database)
-1. Login ke https://supabase.com, buat project baru (region Singapore/SEA),
-   nama "gekrafs-ponorogo". Simpan DB password.
-2. Buka SQL Editor, jalankan isi file repo `supabase/schema.sql`
-   (membuat tabel news, events, members + Row Level Security).
-3. Jalankan juga `supabase/seed.sql` (mengisi 3 berita + 3 event awal).
+1. Login supabase.com. Pakai project yang sudah ada, atau buat baru
+   "gekrafs-ponorogo" (region Singapore). Simpan DB password.
+2. SQL Editor -> jalankan isi file repo `supabase/schema.sql`
+   (tabel news, events, members + Row Level Security). Aman bila sudah ada.
+3. SQL Editor -> jalankan `supabase/seed.sql` (isi 3 berita + 3 event awal,
+   idempotent).
 4. Ambil kredensial:
-   - Settings → API:
-       Project URL          -> nilai untuk NEXT_PUBLIC_SUPABASE_URL
-       anon public key      -> nilai untuk NEXT_PUBLIC_SUPABASE_ANON_KEY
-       service_role key     -> nilai untuk SUPABASE_SERVICE_ROLE_KEY  (RAHASIA)
-   - Settings → Database → Connection string:
-       Pooled (port 6543)   -> DATABASE_URL  (tambahkan ?pgbouncer=true)
-       Direct (port 5432)   -> DIRECT_URL
+   - Settings -> API:
+       Project URL      -> NEXT_PUBLIC_SUPABASE_URL
+       anon public      -> NEXT_PUBLIC_SUPABASE_ANON_KEY
+       service_role     -> SUPABASE_SERVICE_ROLE_KEY  (RAHASIA)
+   - Settings -> Database -> Connection string:
+       Pooled  (6543)   -> DATABASE_URL  (tambah ?pgbouncer=true)
+       Direct  (5432)   -> DIRECT_URL
 
-LANGKAH 2 — VERCEL (deploy)
-Opsi A (CLI, paling otomatis):
-   npm i -g vercel
-   vercel login
+LANGKAH 2 — VERCEL (environment variables + redeploy)
+Set 6 env ini di Vercel (Production + Preview). CLI:
+   npm i -g vercel && vercel login
    git clone https://github.com/panjivr/gekrafsponorogo && cd gekrafsponorogo
-   vercel link        # buat/link project "gekrafs-ponorogo"
-   # set environment variables (Production) — ganti <...> dengan nilai Langkah 1:
+   vercel link            # link ke project Vercel yang sudah ada
    vercel env add NEXT_PUBLIC_SUPABASE_URL production
    vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
    vercel env add SUPABASE_SERVICE_ROLE_KEY production
    vercel env add DATABASE_URL production
    vercel env add DIRECT_URL production
-   vercel env add ADMIN_PASSWORD production   # password untuk panel /admin (lihat pendaftar)
-   vercel --prod      # deploy production
-Opsi B (Dashboard):
-   - vercel.com → Add New → Project → import panjivr/gekrafsponorogo
-   - Production Branch: main (Settings → Git)
-   - Settings → Environment Variables: tambahkan 6 variabel di atas (Production+Preview)
-   - Deploy / Redeploy
-Verifikasi: buka URL *.vercel.app, pastikan halaman "/", "/berita", "/daftar" 200.
-Catatan: pendaftar dari /daftar tersimpan di tabel Supabase `members` dan bisa
-dilihat/dikelola di /admin (login pakai ADMIN_PASSWORD).
+   vercel env add ADMIN_PASSWORD production     # tentukan password kuat utk /admin
+   vercel --prod          # redeploy production
+(atau lewat Dashboard: Settings -> Environment Variables, isi 6 di atas,
+ lalu Deployments -> Redeploy. Pastikan Production Branch = main.)
 
-LANGKAH 3 — DOMAIN gekrafsponorogo.my.id
-1. Vercel → Project → Settings → Domains → Add: gekrafsponorogo.my.id
-   (tambah juga www.gekrafsponorogo.my.id, set redirect www → apex).
-2. Vercel akan menampilkan record DNS yang diminta. Catat nilainya.
-3. Login DomaiNesia → Domains → gekrafsponorogo.my.id → DNS Management,
-   buat record (ikuti tampilan Vercel; default Vercel saat ini):
-       Type A     | Host @   | Value 76.76.21.21          | TTL 3600
-       Type CNAME | Host www | Value cname.vercel-dns.com | TTL 3600
-   Jika sudah ada record A/CNAME konflik di @ atau www, hapus/ganti.
-4. Tunggu propagasi (5–60 menit). Cek: `dig gekrafsponorogo.my.id +short`
-   harus mengembalikan 76.76.21.21. Vercel akan auto-issue SSL (HTTPS).
+LANGKAH 3 — DOMAIN (verifikasi, harusnya sudah aktif)
+- Vercel -> Settings -> Domains: pastikan gekrafsponorogo.my.id "Valid
+  Configuration" + SSL aktif. Bila belum, di DomaiNesia -> DNS Management:
+      A     @    76.76.21.21
+      CNAME www  cname.vercel-dns.com
+  (ikuti nilai yang ditampilkan Vercel bila beda).
 
-LANGKAH 4 — VERIFIKASI AKHIR
-- curl -I https://gekrafsponorogo.my.id  -> HTTP/2 200, ada header SSL
-- Buka di browser: hero + video tampil, menu jalan, /daftar bisa submit
-  (data masuk ke tabel members Supabase dengan status 'pending'); cek /admin.
-- Laporkan: URL vercel, status domain, status HTTPS, dan screenshot homepage.
+LANGKAH 4 — VERIFIKASI END-TO-END (semua harus PASS)
+[ ] curl -I https://gekrafsponorogo.my.id  -> HTTP 200 + HTTPS
+[ ] Buka https://gekrafsponorogo.my.id  -> tampil landing 3D (partikel emas
+    bergerak, background hitam). Cek di desktop & mobile.
+[ ] https://gekrafsponorogo.my.id/daftar -> isi form -> submit sukses, lalu
+    cek di Supabase Table Editor `members` ada baris baru status 'pending'.
+[ ] https://gekrafsponorogo.my.id/admin -> login pakai ADMIN_PASSWORD ->
+    pendaftar tadi muncul -> klik "Setujui".
+[ ] https://gekrafsponorogo.my.id/anggota -> nama yang disetujui muncul.
+[ ] https://gekrafsponorogo.my.id/berita dan /event -> tampil data.
+[ ] Console browser bersih (tidak ada error merah fatal).
+
+LAPORKAN
+URL production, status SSL, hasil tiap item checklist (PASS/FAIL), dan
+screenshot homepage 3D + halaman /admin.
 
 ATURAN
-- Jangan commit secret ke repo. Semua key hanya di Environment Variables Vercel.
-- Jika DomaiNesia tak punya API, lakukan langkah DNS via dashboard secara manual.
-- Jika ada error build, baca log Vercel, perbaiki, redeploy sampai hijau.
+- Jangan commit secret ke repo; semua key hanya di Vercel Env Vars.
+- Jika build/deploy error, baca log Vercel, perbaiki, redeploy sampai hijau.
+- DNS DomaiNesia via dashboard bila tak ada API.
+- Jangan ubah desain/konten tanpa diminta; fokus deploy + verifikasi.
 ```
 
 ---
 
-### Env variables yang dibutuhkan (ringkas)
+### Ringkasan env yang wajib ada di Vercel
 
 | Variable | Sumber | Sifat |
 |---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API → Project URL | publik |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase → Settings → API → anon | publik |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Settings → API → service_role | **rahasia** |
-| `DATABASE_URL` | Supabase → Database → Connection (pooled 6543) | **rahasia** |
-| `DIRECT_URL` | Supabase → Database → Connection (direct 5432) | **rahasia** |
-| `ADMIN_PASSWORD` | tentukan sendiri (login panel /admin) | **rahasia** |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase → API → Project URL | publik |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase → API → anon | publik |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → API → service_role | **rahasia** |
+| `DATABASE_URL` | Supabase → Database → pooled (6543) | **rahasia** |
+| `DIRECT_URL` | Supabase → Database → direct (5432) | **rahasia** |
+| `ADMIN_PASSWORD` | tentukan sendiri (login /admin) | **rahasia** |
 
-### Record DNS DomaiNesia (ringkas)
-
-| Type | Host | Value | TTL |
-|---|---|---|---|
-| A | `@` | `76.76.21.21` | 3600 |
-| CNAME | `www` | `cname.vercel-dns.com` | 3600 |
-
-> Selalu utamakan nilai yang DITAMPILKAN Vercel di Settings → Domains bila berbeda.
+> Opsional: deploy juga versi 3D standalone ke Cloudflare Pages dari folder
+> `webgl/` (lihat `webgl/README.md`) bila ingin mirror di subdomain.
