@@ -7,9 +7,9 @@ import Membership from "@/components/sections/Membership";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Tentang GEKRAFS",
+  title: "Tentang GEKRAFS Ponorogo",
   description:
-    "Sejarah, legalitas, visi, misi, dan prinsip GEKRAFS — Gerakan Ekonomi Kreatif Nasional DPC Ponorogo.",
+    "Tentang GEKRAFS Ponorogo — sejarah, legalitas, visi, misi, dan prinsip Gerakan Ekonomi Kreatif Nasional DPC Ponorogo, wadah resmi pelaku ekonomi kreatif & UMKM di Ponorogo, Jawa Timur.",
 };
 
 export default function TentangPage() {

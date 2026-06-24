@@ -10,7 +10,7 @@ export const org = {
   hashtag: "#EkrafBangkitIndonesiaMaju",
   domain: "gekrafsponorogo.my.id",
   description:
-    "Wadah resmi pegiat ekonomi kreatif Ponorogo — menghimpun pelaku kreatif, UMKM, komunitas, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital.",
+    "GEKRAFS Ponorogo (Gerakan Ekonomi Kreatif Nasional DPC Ponorogo) adalah wadah resmi pelaku ekonomi kreatif dan UMKM di Kabupaten Ponorogo, Jawa Timur — menghimpun komunitas kreatif, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital.",
   email: "halo@gekrafsponorogo.my.id",
   whatsapp: "+62 812-0000-0000",
   address: "Ponorogo, Jawa Timur, Indonesia",

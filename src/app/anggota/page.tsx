@@ -7,7 +7,7 @@ import { getMembers } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Direktori Anggota",
-  description: "Direktori pelaku ekonomi kreatif yang tergabung dalam GEKRAFS Ponorogo.",
+  description: "Direktori anggota GEKRAFS Ponorogo — pelaku ekonomi kreatif dan UMKM lintas 17 subsektor di Kabupaten Ponorogo, Jawa Timur yang tergabung dalam Gerakan Ekonomi Kreatif Nasional.",
 };
 
 export const revalidate = 300;

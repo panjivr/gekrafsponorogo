@@ -3,8 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GEKRAFS Ponorogo — Ekosistem Digital Ekonomi Kreatif</title>
-<meta name="description" content="Membangun masa depan ekonomi kreatif Ponorogo. Kolaborasi pelaku kreatif, UMKM, komunitas, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital." />
+<title>GEKRAFS Ponorogo — Gerakan Ekonomi Kreatif Nasional DPC Ponorogo</title>
+<meta name="description" content="GEKRAFS Ponorogo (Gerakan Ekonomi Kreatif Nasional DPC Ponorogo) — wadah resmi pelaku ekonomi kreatif, UMKM, dan komunitas kreatif di Kabupaten Ponorogo, Jawa Timur. Daftar anggota, program, event, dan 17 subsektor ekraf." />
+<meta name="keywords" content="GEKRAFS Ponorogo, Gerakan Ekonomi Kreatif Nasional, ekonomi kreatif Ponorogo, ekraf Ponorogo, UMKM Ponorogo, DPC Ponorogo, komunitas kreatif Ponorogo, Reog Ponorogo, 17 subsektor ekraf, daftar anggota GEKRAFS" />
+<meta name="author" content="GEKRAFS Ponorogo — Gerakan Ekonomi Kreatif Nasional DPC Ponorogo" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#050814" />
+<link rel="canonical" href="https://gekrafsponorogo.my.id/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="GEKRAFS Ponorogo" />
+<meta property="og:locale" content="id_ID" />
+<meta property="og:url" content="https://gekrafsponorogo.my.id/" />
+<meta property="og:title" content="GEKRAFS Ponorogo — Gerakan Ekonomi Kreatif Nasional DPC Ponorogo" />
+<meta property="og:description" content="Wadah resmi pelaku ekonomi kreatif & UMKM Ponorogo. Kolaborasi komunitas kreatif, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="GEKRAFS Ponorogo — Gerakan Ekonomi Kreatif Nasional DPC Ponorogo" />
+<meta name="twitter:description" content="Wadah resmi pelaku ekonomi kreatif & UMKM Ponorogo, Jawa Timur." />
+<script>document.documentElement.className += ' js';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -157,7 +172,9 @@
   .socials a:hover{color:var(--cyan);border-color:var(--cyan)}
   .copy{margin-top:48px;padding-top:24px;border-top:1px solid rgba(91,141,239,.16);text-align:center;color:var(--text-muted);font-size:13px}
 
-  @media (prefers-reduced-motion:no-preference){.reveal{opacity:0}}
+  /* Hidden only when JS is active (crawlers/no-JS see full content) */
+  .js .reveal{opacity:0}
+  @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1}}
 
   @media(max-width:900px){
     .two-col{grid-template-columns:1fr}
@@ -196,9 +213,9 @@
 
 <section id="hero" class="hero" data-scene="net">
   <div class="wrap">
-    <span class="label reveal">DPC Ponorogo · Resmi</span>
+    <span class="label reveal">GEKRAFS Ponorogo · DPC Resmi</span>
     <h1 class="reveal">Membangun Masa Depan<br/>Ekonomi Kreatif Ponorogo</h1>
-    <p class="lead reveal">Kolaborasi pelaku kreatif, UMKM, komunitas, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital yang hidup dari setiap event.</p>
+    <p class="lead reveal"><strong>GEKRAFS Ponorogo</strong> — Gerakan Ekonomi Kreatif Nasional DPC Ponorogo. Wadah resmi pelaku ekonomi kreatif &amp; UMKM Ponorogo: kolaborasi komunitas kreatif, pemerintah, akademisi, media, dan investor dalam satu ekosistem digital yang hidup dari setiap event di Kabupaten Ponorogo, Jawa Timur.</p>
     <div class="hero-cta reveal">
       <a href="https://gekrafsponorogo.my.id/daftar" class="btn btn-blue">Gabung GEKRAFS ›</a>
       <a href="https://gekrafsponorogo.my.id/program" class="btn btn-ghost">Lihat Program</a>
@@ -399,6 +416,39 @@
   </div>
 </footer>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "NGO"],
+      "@id": "https://gekrafsponorogo.my.id/#organization",
+      "name": "GEKRAFS Ponorogo",
+      "legalName": "Gerakan Ekonomi Kreatif Nasional — DPC Ponorogo",
+      "alternateName": ["GEKRAFS Ponorogo", "Gerakan Ekonomi Kreatif Nasional Ponorogo", "Ekraf Ponorogo"],
+      "url": "https://gekrafsponorogo.my.id/",
+      "slogan": "Ekraf Bangkit, Indonesia Maju",
+      "email": "halo@gekrafsponorogo.my.id",
+      "description": "Wadah resmi pelaku ekonomi kreatif dan UMKM di Kabupaten Ponorogo, Jawa Timur — cabang dari Gerakan Ekonomi Kreatif Nasional (GEKRAFS).",
+      "areaServed": { "@type": "AdministrativeArea", "name": "Kabupaten Ponorogo, Jawa Timur, Indonesia" },
+      "location": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Ponorogo", "addressRegion": "Jawa Timur", "addressCountry": "ID" } },
+      "sameAs": [
+        "https://www.instagram.com/gekrafs.ponorogo",
+        "https://www.tiktok.com/@gekrafs.ponorogo",
+        "https://gekrafs.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://gekrafsponorogo.my.id/#website",
+      "url": "https://gekrafsponorogo.my.id/",
+      "name": "GEKRAFS Ponorogo",
+      "inLanguage": "id-ID",
+      "publisher": { "@id": "https://gekrafsponorogo.my.id/#organization" }
+    }
+  ]
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script type="importmap">

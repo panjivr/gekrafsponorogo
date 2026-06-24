@@ -4,9 +4,9 @@ import Structure from "@/components/sections/Structure";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Struktur Organisasi",
+  title: "Struktur Organisasi GEKRAFS Ponorogo",
   description:
-    "Struktur DPC GEKRAFS Ponorogo: dewan pendukung, pimpinan harian, delapan bidang kerja, dan dasar hukum pembentukan.",
+    "Struktur organisasi DPC GEKRAFS Ponorogo: dewan pendukung, pimpinan harian, delapan bidang kerja standar nasional, dan dasar hukum pembentukan Gerakan Ekonomi Kreatif Nasional di Ponorogo.",
 };
 
 export default function StrukturPage() {

@@ -6,7 +6,7 @@ import { getNews } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Berita",
-  description: "Kabar terkini, press release, dan pengumuman dari GEKRAFS Ponorogo.",
+  description: "Berita & kabar terkini GEKRAFS Ponorogo — kegiatan, program, dan pengumuman ekonomi kreatif serta UMKM di Kabupaten Ponorogo, Jawa Timur.",
 };
 
 export const revalidate = 300;

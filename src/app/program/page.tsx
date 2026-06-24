@@ -9,9 +9,9 @@ import CTA from "@/components/sections/CTA";
 import { program, divisions } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Program & Bidang Kerja",
+  title: "Program & Bidang Kerja GEKRAFS Ponorogo",
   description:
-    "Program GEKRAFS Ponorogo berbasis event: delapan bidang kerja standar nasional, departemen subsektor, dan roadmap aksi.",
+    "Program GEKRAFS Ponorogo berbasis event untuk menggerakkan ekonomi kreatif & UMKM Ponorogo: delapan bidang kerja standar nasional, departemen subsektor, dan roadmap aksi.",
 };
 
 export default function ProgramPage() {

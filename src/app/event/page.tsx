@@ -6,7 +6,7 @@ import { getEvents } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Event & Kegiatan",
-  description: "Kalender event dan agenda kegiatan GEKRAFS Ponorogo.",
+  description: "Kalender event & agenda kegiatan GEKRAFS Ponorogo — panggung pelaku kreatif, UMKM, kuliner, kriya, dan musik di Kabupaten Ponorogo, Jawa Timur.",
 };
 
 export const revalidate = 300;

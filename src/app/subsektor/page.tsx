@@ -4,9 +4,9 @@ import Subsectors from "@/components/sections/Subsectors";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "17 Subsektor Ekraf",
+  title: "17 Subsektor Ekonomi Kreatif Ponorogo",
   description:
-    "Tujuh belas subsektor ekonomi kreatif yang dinaungi GEKRAFS Ponorogo — dari kuliner hingga periklanan.",
+    "17 subsektor ekonomi kreatif yang dinaungi GEKRAFS Ponorogo — kuliner, fashion, kriya, musik, film, fotografi, aplikasi, game, hingga periklanan di Kabupaten Ponorogo, Jawa Timur.",
 };
 
 export default function SubsektorPage() {

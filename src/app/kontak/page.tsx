@@ -8,7 +8,7 @@ import { TikTokIcon } from "@/components/site/icons";
 
 export const metadata: Metadata = {
   title: "Kontak",
-  description: "Hubungi GEKRAFS Ponorogo untuk kemitraan, kolaborasi, dan informasi keanggotaan.",
+  description: "Hubungi GEKRAFS Ponorogo (Gerakan Ekonomi Kreatif Nasional DPC Ponorogo) untuk kemitraan, kolaborasi event, sponsorship, dan informasi keanggotaan ekonomi kreatif di Ponorogo, Jawa Timur.",
 };
 
 const channels = [

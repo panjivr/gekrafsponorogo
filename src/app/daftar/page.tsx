@@ -5,9 +5,9 @@ import RegisterForm from "@/components/forms/RegisterForm";
 import { Check } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Daftar Anggota",
+  title: "Daftar Anggota GEKRAFS Ponorogo",
   description:
-    "Formulir pendaftaran anggota GEKRAFS Ponorogo. Dari volunteer menjadi penggerak ekonomi kreatif.",
+    "Daftar jadi anggota GEKRAFS Ponorogo — gabung Gerakan Ekonomi Kreatif Nasional DPC Ponorogo. Untuk pelaku ekonomi kreatif, UMKM, dan komunitas kreatif di Ponorogo, Jawa Timur.",
 };
 
 export default function DaftarPage() {
