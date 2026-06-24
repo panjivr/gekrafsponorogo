@@ -23,7 +23,8 @@ KONTEKS REPO
 - Node    : 20 atau 22
 
 APA YANG SUDAH ADA DI KODE
-- Root "/"  = landing 3D WebGL immersive (Three.js + GSAP, tema Reog emas/merah),
+- Root "/"  = landing 3D WebGL immersive multi-scene (Three.js + GSAP, tema
+  BIRU GEKRAFS: royal blue #1B4DC4 + cyan #2FD8FF; 8+ scene berbeda),
   dilayani lewat rewrite next.config "/" -> "/3d/index.html"
   (file: public/3d/index.html ; sumber: webgl/index.html).
 - Halaman fungsional (Next.js): /daftar (form pendaftaran -> tabel Supabase
@@ -73,8 +74,9 @@ LANGKAH 3 — DOMAIN (verifikasi, harusnya sudah aktif)
 
 LANGKAH 4 — VERIFIKASI END-TO-END (semua harus PASS)
 [ ] curl -I https://gekrafsponorogo.my.id  -> HTTP 200 + HTTPS
-[ ] Buka https://gekrafsponorogo.my.id  -> tampil landing 3D (partikel emas
-    bergerak, background hitam). Cek di desktop & mobile.
+[ ] Buka https://gekrafsponorogo.my.id  -> tampil landing 3D (jaringan/partikel
+    biru-cyan bergerak, background biru-hitam gelap; scene berganti saat scroll).
+    Cek di desktop & mobile.
 [ ] https://gekrafsponorogo.my.id/daftar -> isi form -> submit sukses, lalu
     cek di Supabase Table Editor `members` ada baris baru status 'pending'.
 [ ] https://gekrafsponorogo.my.id/admin -> login pakai ADMIN_PASSWORD ->
